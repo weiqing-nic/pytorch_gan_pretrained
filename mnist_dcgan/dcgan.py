@@ -17,7 +17,7 @@ import torchvision.utils as vutils
 # python dcgan.py --dataset mnist --dataroot /scratch/users/vision/yu_dl/raaz.rsk/data/cifar10 --imageSize 28 --cuda --outf . --manualSeed 13 --niter 100
 
 class Generator(nn.Module):
-    def __init__(self, ngpu, nc=1, nz=100, ngf=64):
+    def __init__(self, ngpu, nc=1, nz=100, ngf=16):
         super(Generator, self).__init__()
         self.ngpu = ngpu
         self.main = nn.Sequential(
@@ -76,8 +76,8 @@ class Discriminator(nn.Module):
         else:
             output = self.main(input)
         return output.view(-1, 1).squeeze(1)
-    
-if __name__ == '__main__':    
+
+if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset', required=True, help='cifar10 | lsun | mnist |imagenet | folder | lfw | fake')
